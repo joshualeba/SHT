@@ -709,7 +709,7 @@ body.modal-open-blur > *:not(.modal) {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--color-blanco);
+    background-color: #000;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -724,8 +724,8 @@ body.loaded #loader-wrapper {
 }
 
 .loader-text {
-    color: var(--color-texto);
-    margin-top: 2em;
+    color: #fff;
+    margin-top: 5em;
     font-size: 1.2em;
     letter-spacing: 3px;
 }
@@ -738,7 +738,7 @@ body.loaded #loader-wrapper {
 }
 
 .spinner > div {
-    background-color: rgba(0, 123, 255, 0.1);
+    background-color: transparent;
     height: 100%;
     position: absolute;
     width: 100%;

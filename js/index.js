@@ -235,13 +235,13 @@ $(document).ready(function() {
     animateTimeline();
     $(window).on('scroll', animateTimeline);
 
-    // ===== MANEJO DEL LOADER DE PÁGINA =====
-    $(window).on('load', function() {
-        $('body').addClass('loaded');
-        setTimeout(function() {
-            $('#loader-wrapper').css('display', 'none');
-        }, 500); // Coincide con la duración de la transición en el CSS
-    });
+    // // ===== MANEJO DEL LOADER DE PÁGINA =====
+    // $(window).on('load', function() {
+    //     $('body').addClass('loaded');
+    //     setTimeout(function() {
+    //         $('#loader-wrapper').css('display', 'none');
+    //     }, 500); // Coincide con la duración de la transición en el CSS
+    // });
 
     // ===== ANIMACIÓN "INFINITA" EN SCROLL (LAZY LOADING) =====
     function handleScrollAnimations() {
