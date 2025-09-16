@@ -320,8 +320,7 @@
                 <div class="col-md-8 col-md-offset-2">
                     <div class="glass-panel form-panel">
                         <h3>Cuéntanos sobre tu proyecto</h3>
-                        <form id="contactForm" name="contact" method="POST" data-netlify="true">
-                            <input type="hidden" name="form-name" value="contact" />
+                        <form id="contactForm" action="https://formspree.io/f/mqadvepj" method="POST">
                             <div class="form-group">
                                 <input id="nameInput" type="text" name="name" class="form-control" placeholder="Nombre completo" required>
                             </div>
@@ -502,6 +501,17 @@
             <h4>Por favor, corrige los siguientes errores:</h4>
             <ul id="errorList">
                 </ul>
+        </div>
+    </div>
+
+    <div id="successModal" class="validation-modal">
+        <div class="validation-modal-content">
+            <div class="success-icon-container">
+                <span class="glyphicon glyphicon-ok"></span>
+            </div>
+            <h4>¡Mensaje Enviado!</h4>
+            <p>Gracias por contactarnos. Te responderemos a la brevedad.</p>
+            <button id="closeSuccessModal" class="btn btn-success">Entendido</button>
         </div>
     </div>
 

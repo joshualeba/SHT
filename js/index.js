@@ -270,61 +270,91 @@ $(document).ready(function() {
     // Ejecutar la función al cargar y al hacer scroll
     handleScrollAnimations();
     $(window).on('scroll', handleScrollAnimations);
-    
-    // ===== VALIDACIÓN DEL FORMULARIO DE CONTACTO =====
-    $('#contactForm').on('submit', function(event) {
+
+    // ===== VALIDACIÓN Y ENVÍO DEL FORMULARIO CON FORMSPREE (AJAX) =====
+    var contactForm = $('#contactForm');
+
+    contactForm.on('submit', function(event) {
+        event.preventDefault(); 
+
         var errors = [];
         var name = $('#nameInput').val();
         var email = $('#emailInput').val();
         var message = $('#messageInput').val();
+        var uniqueErrors = new Set();
 
-        // 1. Validar Nombre (solo letras y espacios)
+        if (name.trim() === '') { uniqueErrors.add("El campo 'Nombre' es obligatorio."); }
+        if (email.trim() === '') { uniqueErrors.add("El campo 'Correo electrónico' es obligatorio."); }
+        if (message.trim() === '') { uniqueErrors.add("El campo 'Mensaje' es obligatorio."); }
+        
         var namePattern = /^[a-zA-Z\sñÑáéíóúÁÉÍÓÚüÜ]+$/;
-        if (!namePattern.test(name)) {
-            errors.push("El nombre solo puede contener letras y espacios.");
-        }
-
-        // 2. Validar Email
+        if (name.trim() !== '' && !namePattern.test(name)) { uniqueErrors.add("El nombre solo puede contener letras y espacios."); }
+        
         var emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-        if (!emailPattern.test(email)) {
-            errors.push("Por favor, introduce un correo electrónico válido.");
-        }
+        if (email.trim() !== '' && !emailPattern.test(email)) { uniqueErrors.add("Por favor, introduce un correo electrónico válido."); }
+        
+        if (message.length > 350) { uniqueErrors.add("El mensaje no puede superar los 350 caracteres."); }
 
-        // 3. Validar Mensaje (largo máximo)
-        if (message.length > 350) {
-            errors.push("El mensaje no puede superar los 350 caracteres.");
-        }
+        errors = Array.from(uniqueErrors);
 
-        // 4. Validar campos vacíos (extra por si 'required' falla)
-        if (name.trim() === '' || email.trim() === '' || message.trim() === '') {
-            errors.push("Todos los campos son obligatorios.");
-        }
-
-        // Si hay errores, previene el envío y muestra el modal
         if (errors.length > 0) {
-            event.preventDefault(); // Detiene el envío del formulario a Netlify
-
             var errorList = $('#errorList');
-            errorList.empty(); // Limpia errores anteriores
-
-            // Añade cada error a la lista en el modal
-            $.each(errors, function(index, error) {
-                errorList.append('<li>' + error + '</li>');
-            });
-
-            // Muestra el modal
+            errorList.empty();
+            $.each(errors, function(index, error) { errorList.append('<li>' + error + '</li>'); });
+            
+            // Ya no se activa el blur aquí
             $('#validationModal').addClass('is-visible');
+        } else {
+            var formData = new FormData(this);
+            var form = this;
+
+            fetch(form.action, {
+                method: form.method,
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            }).then(function(response) {
+                if (response.ok) {
+                    form.reset();
+                    // Ya no se activa el blur aquí
+                    $('#successModal').addClass('is-visible');
+                } else {
+                    response.json().then(function(data) {
+                        if (Object.hasOwn(data, 'errors')) {
+                            var serverErrors = data['errors'].map(function(error) { return error['message']; }).join(', ');
+                            alert("Oops! Hubo un problema: " + serverErrors);
+                        } else {
+                            alert("Oops! Hubo un problema al enviar el formulario.");
+                        }
+                    });
+                }
+            }).catch(function(error) {
+                alert("Oops! Hubo un problema de red al enviar el formulario.");
+            });
         }
-        // Si no hay errores, el formulario se enviará a Netlify normalmente.
     });
 
-    // Cerrar el modal de validación
-    $('.close-button, #validationModal').on('click', function() {
+    // --- Lógica para cerrar los modales ---
+    function closeValidationModal() {
         $('#validationModal').removeClass('is-visible');
+    }
+
+    function closeSuccessModal() {
+        $('#successModal').removeClass('is-visible');
+    }
+
+    $('.close-button, #validationModal').on('click', function(e) {
+        if (e.target.id === 'validationModal' || $(e.target).hasClass('close-button')) {
+            closeValidationModal();
+        }
     });
 
-    // Evitar que el clic en el contenido del modal lo cierre
-    $('.validation-modal-content').on('click', function(event) {
-        event.stopPropagation();
+    $('#closeSuccessModal, #successModal').on('click', function(e) {
+        if (e.target.id === 'successModal' || e.target.id === 'closeSuccessModal') {
+            closeSuccessModal();
+        }
+    });
+
+    $('.validation-modal-content').on('click', function(e) {
+        e.stopPropagation();
     });
 });

@@ -996,3 +996,49 @@ footer {
 .close-button:hover {
     opacity: 1;
 }
+
+/* ==========================================================================
+   Modal de Éxito
+   ========================================================================== */
+.success-icon-container {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px auto;
+    background-color: #28a745; /* Verde de éxito */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid rgba(255, 255, 255, 0.5);
+}
+
+.success-icon-container .glyphicon {
+    font-size: 2.5em;
+    color: #fff;
+}
+
+#successModal .validation-modal-content {
+    text-align: center;
+}
+
+#successModal p {
+    color: #eee;
+    font-size: 1.1em;
+    margin-bottom: 25px;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border: 1px solid #28a745;
+    color: #fff;
+    padding: 10px 30px;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+    color: #fff;
+}
