@@ -913,3 +913,86 @@ footer {
     .timeline-content { padding: 20px; }
     .timeline-item:nth-child(even) .timeline-icon {left: 25px;}
 }
+
+/* ==========================================================================
+   Modal de Validación Glassmorphism (Versión Mejorada)
+   ========================================================================== */
+.validation-modal {
+    display: none;
+    position: fixed;
+    z-index: 10001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.validation-modal.is-visible {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+}
+
+.validation-modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 500px;
+    padding: 30px 40px;
+    /* Efecto Glassmorphism */
+    background: rgba(35, 35, 35, 0.4);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Estilos del texto */
+    color: var(--color-blanco);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.validation-modal-content h4 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.validation-modal-content ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.validation-modal-content li {
+    padding: 8px 0;
+    font-size: 1.1em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.validation-modal-content li:last-child {
+    border-bottom: none;
+}
+
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2.5rem;
+    color: var(--color-blanco);
+    background: none;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.close-button:hover {
+    opacity: 1;
+}

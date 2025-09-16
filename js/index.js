@@ -270,4 +270,61 @@ $(document).ready(function() {
     // Ejecutar la función al cargar y al hacer scroll
     handleScrollAnimations();
     $(window).on('scroll', handleScrollAnimations);
+    
+    // ===== VALIDACIÓN DEL FORMULARIO DE CONTACTO =====
+    $('#contactForm').on('submit', function(event) {
+        var errors = [];
+        var name = $('#nameInput').val();
+        var email = $('#emailInput').val();
+        var message = $('#messageInput').val();
+
+        // 1. Validar Nombre (solo letras y espacios)
+        var namePattern = /^[a-zA-Z\sñÑáéíóúÁÉÍÓÚüÜ]+$/;
+        if (!namePattern.test(name)) {
+            errors.push("El nombre solo puede contener letras y espacios.");
+        }
+
+        // 2. Validar Email
+        var emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+        if (!emailPattern.test(email)) {
+            errors.push("Por favor, introduce un correo electrónico válido.");
+        }
+
+        // 3. Validar Mensaje (largo máximo)
+        if (message.length > 350) {
+            errors.push("El mensaje no puede superar los 350 caracteres.");
+        }
+
+        // 4. Validar campos vacíos (extra por si 'required' falla)
+        if (name.trim() === '' || email.trim() === '' || message.trim() === '') {
+            errors.push("Todos los campos son obligatorios.");
+        }
+
+        // Si hay errores, previene el envío y muestra el modal
+        if (errors.length > 0) {
+            event.preventDefault(); // Detiene el envío del formulario a Netlify
+
+            var errorList = $('#errorList');
+            errorList.empty(); // Limpia errores anteriores
+
+            // Añade cada error a la lista en el modal
+            $.each(errors, function(index, error) {
+                errorList.append('<li>' + error + '</li>');
+            });
+
+            // Muestra el modal
+            $('#validationModal').addClass('is-visible');
+        }
+        // Si no hay errores, el formulario se enviará a Netlify normalmente.
+    });
+
+    // Cerrar el modal de validación
+    $('.close-button, #validationModal').on('click', function() {
+        $('#validationModal').removeClass('is-visible');
+    });
+
+    // Evitar que el clic en el contenido del modal lo cierre
+    $('.validation-modal-content').on('click', function(event) {
+        event.stopPropagation();
+    });
 });
