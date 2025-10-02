@@ -32,26 +32,6 @@ $(document).ready(function() {
     });
 
     // ===== MANEJO DEL MENÚ MÓVIL =====
-    
-    // Manejar apertura/cierre del menú móvil
-    $('.navbar-toggle').on('click', function() {
-        // Pequeño delay para que Bootstrap procese el toggle
-        setTimeout(function() {
-            if ($('.navbar-collapse').hasClass('in')) {
-                $('body').addClass('navbar-open');
-                // Prevenir scroll del contenido de fondo
-                var scrollTop = $(window).scrollTop();
-                $('body').data('scroll-position', scrollTop);
-                $('body').css('top', -scrollTop);
-            } else {
-                $('body').removeClass('navbar-open');
-                // Restaurar scroll position
-                var scrollTop = parseInt($('body').data('scroll-position') || '0');
-                $('body').css('top', '');
-                $(window).scrollTop(scrollTop);
-            }
-        }, 50);
-    });
 
     // Cerrar menú cuando se hace clic en cualquier enlace
     $('.navbar-nav a').on('click', function() {
@@ -357,4 +337,107 @@ $(document).ready(function() {
     $('.validation-modal-content').on('click', function(e) {
         e.stopPropagation();
     });
+
+    // ===== LÓGICA DEL CHAT VIRTUAL =====
+    var chatToggle = $('#chat-toggle');
+    var chatWindow = $('#chat-window');
+    var chatBody = $('#chat-body');
+    var chatInput = $('#chat-input');
+    
+    // Almacenamos el mensaje inicial para reutilizarlo
+    var initialBotMessage = chatBody.html();
+
+    var chatResponses = {
+        '1': 'Ofrecemos soluciones integrales para la industria: Obra civil, Montaje y nivelación de maquinaria, Reparación de equipos, Fabricación de sistemas hidráulicos/neumáticos e Instalación de tuberías especializadas.',
+        '2': 'Somos una empresa familiar con 50 años de experiencia, fundada por el Ing. Andrés Tijerina Cruz. Nuestra trayectoria es garantía de calidad y conocimiento técnico.',
+        '3': 'Para solicitar una cotización formal, puedes <a href="https://wa.link/osrcg2" target="_blank">cotizar tu proyecto aquí</a>. Un especialista te atenderá a la brevedad.',
+        '4': 'Nuestras oficinas se encuentran en Níspero 2406 Ote, Jardines de la Moderna, en Monterrey, Nuevo León.',
+        '5': 'Nuestro horario de oficina es de Lunes a Viernes de 9:00 a.m. a 6:00 p.m.',
+        '6': 'Para hablar con un miembro de nuestro equipo, puedes llamarnos al celular <strong>81 2944 6404</strong> o dejarnos un mensaje en nuestro <a href="#contact" class="chat-link">formulario de contacto</a> o <a href="https://wa.link/osrcg2" target="_blank">Cotizar tu proyecto aquí</a>. ¡Será un gusto atenderte!'
+    };
+
+    // Abrir y cerrar el chat
+    chatToggle.on('click', function() {
+        chatWindow.toggleClass('is-visible');
+        if (!chatWindow.hasClass('is-visible')) {
+            // Restaura el chat a su estado inicial al cerrar
+            setTimeout(function() {
+                chatBody.html(initialBotMessage);
+            }, 500);
+        }
+    });
+
+    // Procesar la pregunta del usuario
+    chatInput.on('keypress', function(e) {
+        if (e.which == 13) { // Tecla Enter
+            var userQuestion = $(this).val().trim();
+            if (chatResponses[userQuestion]) {
+                var userMessageHTML = '<div class="chat-message user"><p>' + userQuestion + '</p></div>';
+                chatBody.append(userMessageHTML);
+
+                setTimeout(function() {
+                    var botResponseHTML = '<div class="chat-message bot"><p>' + chatResponses[userQuestion] + '</p></div>';
+                    chatBody.append(botResponseHTML);
+                    chatBody.scrollTop(chatBody[0].scrollHeight);
+
+                    // NUEVA FUNCIONALIDAD: Vuelve a mostrar las preguntas después de 5 segundos
+                    setTimeout(function() {
+                        var repromptHTML = '<div class="chat-message bot"><p>¿Puedo ayudarte con algo más? Aquí tienes las opciones de nuevo:</p>' + 
+                                           $(initialBotMessage).find('.questions-list').prop('outerHTML') + 
+                                           '</div>';
+                        chatBody.append(repromptHTML);
+                        chatBody.scrollTop(chatBody[0].scrollHeight);
+                    }, 7000); // 5 segundos de espera
+
+                }, 500);
+            }
+            $(this).val('');
+        }
+    });
+    
+    // Cerrar el chat al hacer clic en un enlace interno
+    chatBody.on('click', '.chat-link', function(e) {
+        e.preventDefault();
+        var target = $(this).attr('href');
+        $('html, body').animate({ scrollTop: $(target).offset().top }, 800);
+        chatWindow.removeClass('is-visible');
+    });
+
+    // Cerrar el chat al hacer clic fuera de él
+    $(document).on('click', function(e) {
+        if (chatWindow.hasClass('is-visible') && !$(e.target).closest('#chat-container').length) {
+            chatWindow.removeClass('is-visible');
+        }
+    });
+
+    // ===== OCULTAR BOTONES FLOTANTES AL LLEGAR AL FOOTER =====
+    var footer = document.querySelector('footer');
+    var centralCtaButton = $('.central-cta-button');
+    var chatContainer = $('#chat-container');
+
+    // Opciones para el observador: se activará cuando el footer esté a 100px de entrar en pantalla
+    var observerOptions = {
+        root: null, // El viewport
+        rootMargin: '0px 0px -100px 0px',
+        threshold: 0
+    };
+
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                // Si el footer está visible, oculta los botones
+                centralCtaButton.addClass('floating-buttons-hidden');
+                chatContainer.addClass('floating-buttons-hidden');
+            } else {
+                // Si el footer no está visible, muestra los botones
+                centralCtaButton.removeClass('floating-buttons-hidden');
+                chatContainer.removeClass('floating-buttons-hidden');
+            }
+        });
+    }, observerOptions);
+
+    // Iniciar la observación del footer
+    if (footer) {
+        observer.observe(footer);
+    }
 });

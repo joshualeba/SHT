@@ -25,6 +25,7 @@
     <link rel="icon" type="image/png" href="multimedia/isotipo_sht.png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -487,10 +488,6 @@
         </div>
     </div>
 
-    <a href="https://wa.link/osrcg2" class="whatsapp-float-button" target="_blank">
-        <i class="fa fa-whatsapp"></i>
-    </a>
-
     <footer class="text-center lazy-load">
         <p>&copy; 2024 SHT - Servicios Hidráulicos Tijerina SA DE CV. Todos los derechos reservados.<br>Diseñado y desarrollado por hiRed</p>
     </footer>
@@ -509,9 +506,41 @@
             <div class="success-icon-container">
                 <span class="glyphicon glyphicon-ok"></span>
             </div>
-            <h4>¡Mensaje Enviado!</h4>
+            <h4>¡Mensaje enviado!</h4>
             <p>Gracias por contactarnos. Te responderemos a la brevedad.</p>
             <button id="closeSuccessModal" class="btn btn-success">Entendido</button>
+        </div>
+    </div>
+
+    <a href="https://wa.link/osrcg2" class="central-cta-button" target="_blank">
+        Cotiza tu proyecto
+    </a>
+
+    <div id="chat-container">
+        <div id="chat-window" class="chat-window">
+            <div class="chat-header">
+                <h4>Asistente virtual SHT</h4>
+            </div>
+            <div id="chat-body" class="chat-body">
+                <div class="chat-message bot">
+                    <p>Hola, soy un asistente virtual, puedo ayudarte con preguntas frecuentes. Por favor, escribe el número de la pregunta que quieres resolver:</p>
+                    <ul class="questions-list">
+                        <li><strong>1.</strong> ¿Qué servicios ofrecen?</li>
+                        <li><strong>2.</strong> ¿Cuál es su experiencia en la industria?</li>
+                        <li><strong>3.</strong> ¿Cómo puedo solicitar una cotización formal?</li>
+                        <li><strong>4.</strong> ¿Dónde están ubicados?</li>
+                        <li><strong>5.</strong> ¿Cuál es su horario de atención?</li>
+                        <li><strong>6.</strong> Necesito hablar con una persona.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="chat-footer">
+                <input type="text" id="chat-input" placeholder="Escribe un número..." autocomplete="off">
+            </div>
+        </div>
+
+        <div id="chat-toggle" class="chat-toggle-button">
+            <i class="fa fa-comments"></i>
         </div>
     </div>
 

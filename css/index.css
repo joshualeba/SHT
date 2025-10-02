@@ -24,6 +24,8 @@ body {
     color: var(--color-texto);
     background-color: var(--color-blanco);
     font-size: 16px;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 body.navbar-open,
@@ -810,6 +812,10 @@ footer {
    Media Queries (Responsivo)
    ========================================================================== */
 @media (max-width: 767px) {
+    html {
+        overflow-x: hidden;
+    } 
+
     body.navbar-open {
         overflow: hidden !important;
         position: fixed;
@@ -863,6 +869,7 @@ footer {
         background-color: rgba(255, 255, 255, 0.98) !important;
         backdrop-filter: blur(15px);
         -webkit-backdrop-filter: blur(15px);
+        text-align: center;
     }
 
     .navbar-inverse .navbar-collapse .navbar-nav {
@@ -1041,4 +1048,181 @@ footer {
     background-color: #218838;
     border-color: #1e7e34;
     color: #fff;
+}
+
+.central-cta-button {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+    background-color: var(--color-primario);
+    color: #fff;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.1em;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    text-decoration: none;
+    transition: all 0.4s ease;
+}
+
+.central-cta-button:hover {
+    transform: translateX(-50%) scale(1.05);
+    color: #fff;
+}
+
+#chat-container {
+    position: fixed;
+    bottom: 40px;
+    right: 10px;
+    z-index: 1000;
+    transition: all 0.4s ease;
+}
+
+.chat-toggle-button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--color-primario);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+}
+
+.chat-toggle-button:hover {
+    transform: scale(1.1);
+}
+
+.chat-window {
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    width: 90vw;
+    max-width: 380px;
+    border-radius: 15px;
+    overflow: hidden;
+    background: rgba(10, 25, 47, 0.7);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    transition: all 0.4s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px) scale(0.95);
+    display: flex;
+    flex-direction: column;
+    font-family: 'Poppins', sans-serif;
+}
+
+.chat-window.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.chat-header {
+    padding: 15px 20px;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.chat-header h4 {
+    margin: 0;
+    font-weight: 700;
+}
+
+.chat-body {
+    padding: 15px;
+    color: #eee;
+    height: 400px;
+    overflow-y: auto;
+}
+
+.chat-message {
+    margin-bottom: 15px;
+    padding: 12px;
+    border-radius: 10px;
+    max-width: 90%;
+}
+
+.chat-message.bot {
+    background: rgba(0,0,0,0.2);
+    align-self: flex-start;
+}
+.chat-message.user {
+    background: var(--color-primario);
+    color: #fff;
+    align-self: flex-end;
+    margin-left: auto;
+}
+
+.chat-message p { margin: 0; color: #fff; }
+.chat-message .questions-list { list-style: none; padding-left: 0; margin-top: 10px; }
+.chat-message .questions-list li { margin-bottom: 5px; font-size: 0.9em; }
+
+.chat-footer {
+    padding: 10px;
+    background: rgba(0,0,0,0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#chat-input {
+    width: 100%;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 10px 15px;
+    color: #fff;
+    font-size: 0.9em;
+}
+
+#chat-input::placeholder { color: rgba(255, 255, 255, 0.5); }
+#chat-input:focus { outline: none; border-color: var(--color-primario); }
+
+@keyframes pulse-effect {
+    0% {
+        transform: translateX(-50%) scale(1);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+    100% {
+        transform: translateX(-50%) scale(1.05);
+        box-shadow: 0 8px 30px rgba(0, 123, 255, 0.5);
+    }
+}
+
+.central-cta-button {
+    animation: pulse-effect 2s ease-in-out infinite alternate;
+}
+
+@media (max-width: 767px) {
+    #chat-container {
+        bottom: 80px;
+    }
+}
+
+.modal-cta .btn-cta {
+    padding: 10px 20px;
+    font-size: 1em;
+    letter-spacing: 0.5px;
+}
+
+.floating-buttons-hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(150px);
+}
+
+.central-cta-button.floating-buttons-hidden {
+    transform: translateX(-50%) translateY(150px);
 }
