@@ -263,6 +263,126 @@ p {
 }
 
 /* ==========================================================================
+   Badge 25 Aniversario
+   ========================================================================== */
+.anniversary-badge {
+    position: absolute;
+    top: 120px;
+    right: 10%;
+    width: 140px;
+    height: 140px;
+    background-color: var(--color-primario);
+    border-radius: 50%;
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-blanco);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 5px solid rgba(255, 255, 255, 0.9);
+    animation: badgePulse 3s infinite ease-in-out;
+    transform-origin: center;
+}
+
+.badge-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    z-index: 2;
+    text-align: center;
+}
+
+.badge-years {
+    font-size: 3.5em;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.badge-text {
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: -5px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+.badge-ring {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border: 1px dashed rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    animation: spinRing 20s linear infinite;
+}
+
+@keyframes badgePulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 15px 40px rgba(213, 38, 41, 0.4);
+    }
+}
+
+@keyframes spinRing {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Ajustes Responsive para el Badge */
+@media (max-width: 991px) {
+    .anniversary-badge {
+        width: 100px;
+        height: 100px;
+        top: 100px;
+        right: 5%;
+    }
+
+    .badge-years {
+        font-size: 2.5em;
+    }
+
+    .badge-text {
+        font-size: 0.6em;
+    }
+}
+
+@media (max-width: 767px) {
+    .anniversary-badge {
+        width: 80px;
+        height: 80px;
+        top: 80px;
+        right: 20px;
+        border-width: 3px;
+    }
+
+    .badge-years {
+        font-size: 2em;
+    }
+
+    .badge-text {
+        font-size: 0.5em;
+        letter-spacing: 0;
+    }
+}
+
+/* ==========================================================================
    Sección "Por Qué Nosotros"
    ========================================================================== */
 .why-us-section {
