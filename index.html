@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="loading">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SHT - Soluciones Industriales en Monterrey | Servicios Hidráulicos Tijerina</title>
+    <title>SHT - Soluciones industriales en Monterrey | Servicios Hidráulicos Tijerina</title>
     <meta name="description"
         content="Con 50 años de experiencia, SHT ofrece soluciones integrales en montaje, reparación de equipos, obra civil y sistemas hidráulicos para la industria metalmecánica en Monterrey.">
     <meta name="keywords"
         content="servicios hidraulicos, SHT, reparacion de maquinaria industrial, montaje de equipos, obra civil industrial, sistemas neumaticos, Monterrey, Tijerina">
     <link rel="canonical" href="https://www.sht.com/">
-    <meta property="og:title" content="SHT - Soluciones Industriales en Monterrey | Servicios Hidráulicos Tijerina">
+    <meta property="og:title" content="SHT - Soluciones industriales en Monterrey | Servicios Hidráulicos Tijerina">
     <meta property="og:description"
         content="Expertos en montaje, reparación de equipos, obra civil y sistemas hidráulicos para la industria metalmecánica.">
     <meta property="og:image" content="https://sht.com/multimedia/slide1.jpg">
@@ -18,7 +18,7 @@
     <meta property="og:type" content="website">
     <meta property="og:locale" content="es_MX">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="SHT - Soluciones Industriales en Monterrey | Servicios Hidráulicos Tijerina">
+    <meta name="twitter:title" content="SHT - Soluciones industriales en Monterrey | Servicios Hidráulicos Tijerina">
     <meta name="twitter:description"
         content="Expertos en montaje, reparación de equipos, obra civil y sistemas hidráulicos para la industria metalmecánica.">
     <meta name="twitter:image" content="https://sht.com/multimedia/slide1.jpg">
@@ -33,46 +33,57 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body class="loading">
 
     <div id="loader-wrapper">
-        <div class="spinner">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+        <div class="loader-decor-bg">SHT</div>
+        <div class="loader-content">
+            <div class="loader-corners"></div>
+            <div class="loader-circle"></div>
+            <div class="loader-logo">SHT</div>
+            <div class="progress-wrap">
+                <div class="loader-progress" id="loaderProgressBar"></div>
+            </div>
+            <div class="loader-percentage" id="loaderPercentage">0%</div>
         </div>
-        <p class="loader-text">Cargando...</p>
     </div>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#navbar-collapse" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#hero">
+    <nav class="custom-navbar">
+        <div class="nav-container">
+            <div class="nav-topbar">
+                <a class="nav-logo" href="#hero">
                     <img src="multimedia/isotipo_sht.png" alt="SHT Logo">
                 </a>
+
+                <div class="nav-tools">
+                    <div class="theme-toggle-wrapper">
+                        <label class="theme-switch-refined">
+                            <input type="checkbox" class="theme-toggle-input">
+                            <span class="theme-slider">
+                                <i class="fa fa-sun-o"></i>
+                                <i class="fa fa-moon-o"></i>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <button class="nav-hamburger" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
-            <div class="collapse navbar-collapse" id="navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
+
+            <div class="nav-menu-overlay">
+                <ul class="nav-links">
                     <li><a href="#hero">Inicio</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                            aria-expanded="false">Servicios <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
+                    <li class="nav-dropdown">
+                        <a href="#services" class="dropdown-trigger">Servicios <i class="fa fa-caret-down"></i></a>
+                        <ul class="dropdown-content">
                             <li><a href="#services">Obra civil industrial</a></li>
                             <li><a href="#services">Montaje y alineación</a></li>
-                            <li><a href="#services">Reparación mecánica y eléctrica</a></li>
-                            <li><a href="#services">Sistemas hidráulicos y neumáticos</a></li>
-                            <li><a href="#services">Instalación de tuberías</a></li>
+                            <li><a href="#services">Reparación mecánica</a></li>
+                            <li><a href="#services">Sistemas hidráulicos</a></li>
                         </ul>
                     </li>
                     <li><a href="#historia">Quiénes somos</a></li>
@@ -97,7 +108,7 @@
                     <div class="hero-icon-container">
                         <span class="glyphicon glyphicon-king hero-icon"></span>
                     </div>
-                    <h2>SERVICIOS HIDRÁULICOS TIJERINA</h2>
+                    <h2>Servicios Hidráulicos Tijerina</h2>
                     <p>50 años de experiencia y dos generaciones de ingenieros a tu servicio en la industria
                         metalmecánica</p>
                     <a href="#about" class="btn btn-hero">Conócenos</a>
@@ -110,9 +121,9 @@
                     <div class="hero-icon-container">
                         <span class="glyphicon glyphicon-wrench hero-icon"></span>
                     </div>
-                    <h2>SOLUCIONES INDUSTRIALES</h2>
+                    <h2>Soluciones industriales</h2>
                     <p>Montaje, alineación, reparación y fabricación de sistemas hidráulicos y neumáticos</p>
-                    <a href="#services" class="btn btn-hero">Nuestros Servicios</a>
+                    <a href="#services" class="btn btn-hero">Nuestros servicios</a>
                 </div>
             </div>
             <div class="item">
@@ -122,7 +133,7 @@
                     <div class="hero-icon-container">
                         <span class="glyphicon glyphicon-cog hero-icon"></span>
                     </div>
-                    <h2>INGENIERÍA DE PRECISIÓN</h2>
+                    <h2>Ingeniería de precisión</h2>
                     <p>Expertos en tuberías y sistemas hidráulicos para equipos americanos y europeos</p>
                     <a href="#contact" class="btn btn-hero">Contáctanos</a>
                 </div>
@@ -145,53 +156,83 @@
         </a>
     </header>
 
-    <section id="about" class="container why-us-section lazy-load">
+    <section id="about" class="container why-us-section">
         <div class="row">
             <div class="col-md-8 col-md-offset-2 text-center">
-                <h2 class="section-title">POR QUÉ TRABAJAR CON NOSOTROS</h2>
-                <p class="section-subtitle">Somos una empresa familiar con 50 años de experiencia, enfocada en ofrecer
-                    soluciones integrales y de primera mano en la industria metalmecánica.</p>
+                <span class="tech-tag"
+                    style="display: inline-block; opacity: 1; transform: none; margin-bottom: 20px;">Valor
+                    diferencial</span>
+                <h2 class="section-title">Por qué trabajar con nosotros</h2>
+                <p class="section-subtitle">Más de cinco décadas perfeccionando procesos industriales con un enfoque en
+                    la precisión y la durabilidad.</p>
             </div>
         </div>
-        <div class="row text-center">
+        <div class="row">
+            <!-- Item 1: Experiencia -->
             <div class="col-md-4">
-                <div class="why-us-item">
-                    <div class="hexagon">
-                        <span class="glyphicon glyphicon-king"></span>
+                <div class="why-card glass-panel">
+                    <div class="why-card-header">
+                        <span class="why-number">01</span>
+                        <div class="why-icon-box">
+                            <i class="fa fa-history"></i>
+                        </div>
                     </div>
-                    <h3>EXPERIENCIA COMPROBADA</h3>
-                    <div class="line-separator"></div>
-                    <p>Nuestra trayectoria de 50 años y dos generaciones de ingenieros garantizan la máxima calidad y
-                        confianza en cada proyecto.</p>
+                    <div class="why-card-body">
+                        <h3>Experiencia comprobada</h3>
+                        <p>Contamos con un legado de 50 años y dos generaciones de ingenieros dedicados a la excelencia
+                            metalmecánica.</p>
+                        <ul class="why-specs">
+                            <li><i class="fa fa-check"></i> 50 años de trayectoria</li>
+                            <li><i class="fa fa-check"></i> 2 generaciones de expertos</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+            <!-- Item 2: Tecnología -->
             <div class="col-md-4">
-                <div class="why-us-item">
-                    <div class="hexagon">
-                        <span class="glyphicon glyphicon-cog"></span>
+                <div class="why-card glass-panel">
+                    <div class="why-card-header">
+                        <span class="why-number">02</span>
+                        <div class="why-icon-box">
+                            <i class="fa fa-cogs"></i>
+                        </div>
                     </div>
-                    <h3>INGENIERÍA DE VANGUARDIA</h3>
-                    <div class="line-separator"></div>
-                    <p>Utilizamos las mejores herramientas y tecnologías para el diagnóstico, reparación y fabricación
-                        de componentes hidráulicos y mecánicos.</p>
+                    <div class="why-card-body">
+                        <h3>Ingeniería de vanguardia</h3>
+                        <p>Implementamos soluciones de diagnóstico y reparación utilizando equipos de medición con
+                            estándares internacionales.</p>
+                        <ul class="why-specs">
+                            <li><i class="fa fa-check"></i> Equipos de alta precisión</li>
+                            <li><i class="fa fa-check"></i> Procesos certificados</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+            <!-- Item 3: Garantía -->
             <div class="col-md-4">
-                <div class="why-us-item">
-                    <div class="hexagon">
-                        <span class="glyphicon glyphicon-star"></span>
+                <div class="why-card glass-panel">
+                    <div class="why-card-header">
+                        <span class="why-number">03</span>
+                        <div class="why-icon-box">
+                            <i class="fa fa-shield"></i>
+                        </div>
                     </div>
-                    <h3>SOLUCIONES INTEGRALES</h3>
-                    <div class="line-separator"></div>
-                    <p>Ofrecemos un servicio completo que abarca desde la obra civil y el montaje hasta la reparación y
-                        mantenimiento de tus equipos.</p>
+                    <div class="why-card-body">
+                        <h3>Soluciones integrales</h3>
+                        <p>Desde la conceptualización hasta el montaje final, ofrecemos un servicio de punta a punta
+                            para sus activos.</p>
+                        <ul class="why-specs">
+                            <li><i class="fa fa-check"></i> Servicio llave en mano</li>
+                            <li><i class="fa fa-check"></i> Soporte técnico especializado</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="services" class="container lazy-load">
-        <h2 class="text-center section-title">NUESTROS SERVICIOS</h2>
+        <h2 class="text-center section-title gsap-title">Nuestros servicios</h2>
         <div class="row">
             <div class="col-md-4 col-sm-6">
                 <div class="glass-panel service-card">
@@ -258,7 +299,7 @@
         <div class="container">
             <div class="row text-center">
                 <div class="col-md-8 col-md-offset-2">
-                    <h2 class="section-title">NUESTRA HISTORIA</h2>
+                    <h2 class="section-title">Nuestra historia</h2>
                     <p class="section-subtitle">Una herencia de ingeniería y pasión, forjada a través de dos
                         generaciones</p>
                 </div>
@@ -313,7 +354,7 @@
 
     <section id="contact" class="container-fluid contact-section-wrapper lazy-load">
         <div class="container">
-            <h2 class="text-center section-title">CONTÁCTANOS</h2>
+            <h2 class="text-center section-title">Contáctanos</h2>
             <div class="row">
                 <div class="col-md-6">
                     <div class="glass-panel contact-info-panel">
@@ -365,18 +406,21 @@
                 <div class="col-md-8 col-md-offset-2">
                     <div class="glass-panel form-panel">
                         <h3>Cuéntanos sobre tu proyecto</h3>
-                        <form id="contactForm" action="https://formspree.io/f/mqadvepj" method="POST">
+                        <form id="contactForm" action="https://blaj-chatbot.vercel.app/f/35dbe21aa238" method="POST">
                             <div class="form-group">
-                                <input id="nameInput" type="text" name="name" class="form-control"
-                                    placeholder="Nombre completo" required>
+                                <input type="text" id="nameInput" name="nombre" class="form-control"
+                                    placeholder="Tu nombre" required>
+                                <span class="validation-feedback" id="nameFeedback"></span>
                             </div>
                             <div class="form-group">
-                                <input id="emailInput" type="email" name="email" class="form-control"
-                                    placeholder="Correo electrónico" required>
+                                <input type="email" id="emailInput" name="correo" class="form-control"
+                                    placeholder="Tu correo" required>
+                                <span class="validation-feedback" id="emailFeedback"></span>
                             </div>
                             <div class="form-group">
-                                <textarea id="messageInput" name="message" class="form-control" rows="5"
+                                <textarea id="messageInput" name="mensaje" class="form-control" rows="5"
                                     placeholder="Tu mensaje" required style="resize: none;"></textarea>
+                                <span class="validation-feedback" id="messageFeedback"></span>
                             </div>
                             <button type="submit" class="btn btn-danger btn-block">Enviar mensaje</button>
                         </form>
@@ -384,213 +428,213 @@
                 </div>
             </div>
         </div>
+        </div>
     </section>
 
+    <!-- Modal: Obra Civil -->
     <div class="modal fade" id="modalObraCivil" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg-tech" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">×</span></button>
-                    <h4 class="modal-title">Obra civil industrial y de equipos especializados</h4>
-                </div>
-                <div class="modal-body">
-                    <p class="modal-description">Desarrollamos cimentaciones, fosos y bases de concreto reforzado,
-                        diseñadas específicamente para soportar las cargas y vibraciones de equipos industriales
-                        pesados, garantizando estabilidad y durabilidad.</p>
-
-                    <div class="swiper-container modal-swiper">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide"><img src="multimedia/servicio1.jpg"
-                                    alt="Cimentación de concreto reforzado para instalación de maquinaria industrial.">
+                <div class="modal-split">
+                    <button class="modal-close-btn" data-dismiss="modal">&times;</button>
+                    <div class="modal-visual">
+                        <div class="swiper-container modal-swiper">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img src="multimedia/servicio1.jpg"
+                                        alt="Obra civil industrial"></div>
+                                <div class="swiper-slide"><img src="multimedia/servicio2.jpg" alt="Vaciado de concreto">
+                                </div>
+                                <div class="swiper-slide"><img src="multimedia/servicio3.jpg" alt="Fosos industriales">
+                                </div>
                             </div>
-                            <div class="swiper-slide"><img src="multimedia/servicio2.jpg"
-                                    alt="Flotilla de camiones de concreto realizando vaciado para obra civil industrial.">
-                            </div>
-                            <div class="swiper-slide"><img src="multimedia/servicio3.jpg"
-                                    alt="Construcción de fosos de cimentación para equipos pesados en nave industrial.">
-                            </div>
-                            <div class="swiper-slide"><img src="multimedia/servicio4.jpg"
-                                    alt="Fosos y bases de concreto terminados para maquinaria especializada."></div>
                         </div>
                     </div>
-
-                </div>
-                <div class="modal-footer">
-                    <div class="modal-cta">
-                        <p>¿Interesado/a en este servicio? Contáctanos para una cotización</p>
-                        <a href="#contact" class="btn btn-danger btn-cta" data-dismiss="modal">Solicitar información</a>
+                    <div class="modal-info">
+                        <span class="tech-tag">Ingeniería civil</span>
+                        <h3>Obra civil para equipos especiales</h3>
+                        <p class="modal-description">Desarrollamos cimentaciones de alta complejidad, fosos y bases de
+                            concreto reforzado diseñadas para soportar cargas dinámicas y vibraciones extremas de
+                            maquinaria pesada.</p>
+                        <ul class="spec-list">
+                            <li><i class="fa fa-check-circle"></i> Cálculo de resistencia estructural</li>
+                            <li><i class="fa fa-check-circle"></i> Fosos de servicio especializados</li>
+                            <li><i class="fa fa-check-circle"></i> Concreto de alta densidad</li>
+                        </ul>
+                        <div class="trust-box">
+                            <i class="fa fa-shield"></i>
+                            <span>Garantizamos estabilidad milimétrica para la precisión de su maquinaria.</span>
+                        </div>
+                        <div class="modal-cta-fixed">
+                            <a href="#contact" class="btn-cta-tech" data-dismiss="modal">Solicitar cotización</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Modal: Montaje -->
     <div class="modal fade" id="modalMontaje" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg-tech" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">×</span></button>
-                    <h4 class="modal-title">Montaje, alineación y nivelación de maquinaria</h4>
-                </div>
-                <div class="modal-body">
-                    <p class="modal-description">Nuestro equipo técnico se especializa en el posicionamiento y la
-                        calibración precisa de maquinaria industrial. Aseguramos que cada componente esté perfectamente
-                        alineado y nivelado para maximizar la eficiencia y vida útil del equipo.</p>
-
-                    <div class="swiper-container modal-swiper">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide"><img src="multimedia/servicio5.jpg"
-                                    alt="Grúa tipo Maxicargas montando una sección de prensa industrial pesada."></div>
-                            <div class="swiper-slide"><img src="multimedia/servicio6.jpg"
-                                    alt="Transporte de maquinaria industrial de gran tamaño en plataforma especializada.">
+                <div class="modal-split">
+                    <button class="modal-close-btn" data-dismiss="modal">&times;</button>
+                    <div class="modal-visual">
+                        <div class="swiper-container modal-swiper">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img src="multimedia/servicio5.jpg" alt="Montaje de prensa">
+                                </div>
+                                <div class="swiper-slide"><img src="multimedia/servicio7.jpg"
+                                        alt="Instalación de equipo"></div>
                             </div>
-                            <div class="swiper-slide"><img src="multimedia/servicio7.jpg"
-                                    alt="Instalación y anclaje de un equipo industrial de rotación sobre base de concreto.">
-                            </div>
-                            <div class="swiper-slide"><img src="multimedia/servicio8.jpg"
-                                    alt="Alineación de rodillos en maquinaria de procesamiento de lámina de acero.">
-                            </div>
-                            <div class="swiper-slide"><img src="multimedia/servicio9.jpg"
-                                    alt="Maniobra de montaje de componente pesado en foso con grúa industrial."></div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <div class="modal-cta">
-                        <p>¿Interesado/a en este servicio? Contáctanos para una cotización</p>
-                        <a href="#contact" class="btn btn-danger btn-cta" data-dismiss="modal">Solicitar información</a>
+                    <div class="modal-info">
+                        <span class="tech-tag">Montaje industrial</span>
+                        <h3>Montaje y nivelación de precisión</h3>
+                        <p class="modal-description">Especialistas en el posicionamiento estratégico y calibración
+                            física de líneas de producción. Aseguramos que cada componente opere en su eje óptimo.</p>
+                        <ul class="spec-list">
+                            <li><i class="fa fa-check-circle"></i> Alineación láser y física</li>
+                            <li><i class="fa fa-check-circle"></i> Nivelación de alta precisión</li>
+                            <li><i class="fa fa-check-circle"></i> Maniobras de carga pesada</li>
+                        </ul>
+                        <div class="trust-box">
+                            <i class="fa fa-anchor"></i>
+                            <span>Maximizamos la vida útil de sus equipos mediante un anclaje perfecto.</span>
+                        </div>
+                        <div class="modal-cta-fixed">
+                            <a href="#contact" class="btn-cta-tech" data-dismiss="modal">Solicitar cotización</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Modal: Reparación -->
     <div class="modal fade" id="modalReparacion" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg-tech" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">×</span></button>
-                    <h4 class="modal-title">Reparación mecánica y eléctrica de equipos industriales</h4>
-                </div>
-                <div class="modal-body">
-                    <p class="modal-description">Ofrecemos un servicio integral de diagnóstico y reparación para fallas
-                        mecánicas y eléctricas. Minimizamos el tiempo de inactividad de su producción con soluciones
-                        rápidas y efectivas.</p>
-
-                    <div class="swiper-container modal-swiper">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide"><img src="multimedia/servicio10.jpg"
-                                    alt="Gabinetes de control eléctrico industrial durante proceso de mantenimiento.">
+                <div class="modal-split">
+                    <button class="modal-close-btn" data-dismiss="modal">&times;</button>
+                    <div class="modal-visual">
+                        <div class="swiper-container modal-swiper">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img src="multimedia/servicio10.jpg"
+                                        alt="Reparación eléctrica"></div>
+                                <div class="swiper-slide"><img src="multimedia/servicio13.jpg"
+                                        alt="Reparación mecánica"></div>
                             </div>
-                            <div class="swiper-slide"><img src="multimedia/servicio11.jpg"
-                                    alt="Prensa industrial de gran tamaño instalada en una nave de producción."></div>
-                            <div class="swiper-slide"><img src="multimedia/servicio12.jpg"
-                                    alt="Operarios trabajando en una prensa dobladora de lámina marca Safan Darley.">
-                            </div>
-                            <div class="swiper-slide"><img src="multimedia/servicio13.jpg"
-                                    alt="Técnico realizando reparación mecánica en un rodillo industrial pesado."></div>
-                            <div class="swiper-slide"><img src="multimedia/servicio14.jpg"
-                                    alt="Mantenimiento y limpieza de los rodillos de una máquina aplanadora de metal.">
-                            </div>
-                            <div class="swiper-slide"><img src="multimedia/servicio15.jpg"
-                                    alt="Instalación de charolas de cableado eléctrico en un foso de servicio."></div>
-                            <div class="swiper-slide"><img src="multimedia/servicio16.jpg"
-                                    alt="Grúa de puente moviendo un anillo de acero de gran diámetro en planta."></div>
-                            <div class="swiper-slide"><img src="multimedia/servicio17.jpg"
-                                    alt="Máquina roladora de lámina de tres rodillos en taller industrial."></div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <div class="modal-cta">
-                        <p>¿Interesado/a en este servicio? Contáctanos para una cotización</p>
-                        <a href="#contact" class="btn btn-danger btn-cta" data-dismiss="modal">Solicitar información</a>
+                    <div class="modal-info">
+                        <span class="tech-tag">Mantenimiento</span>
+                        <h3>Soluciones mecánicas y eléctricas</h3>
+                        <p class="modal-description">Diagnóstico avanzado y restauración de sistemas industriales
+                            comprometidos. Minimizamos tiempos muertos con intervenciones de alta eficiencia.</p>
+                        <ul class="spec-list">
+                            <li><i class="fa fa-check-circle"></i> Reparación de sistemas de control</li>
+                            <li><i class="fa fa-check-circle"></i> Reconstrucción de componentes</li>
+                            <li><i class="fa fa-check-circle"></i> Diagnóstico termográfico</li>
+                        </ul>
+                        <div class="trust-box">
+                            <i class="fa fa-flash"></i>
+                            <span>Recuperamos la operatividad de sus activos en tiempo récord.</span>
+                        </div>
+                        <div class="modal-cta-fixed">
+                            <a href="#contact" class="btn-cta-tech" data-dismiss="modal">Solicitar cotización</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Modal: Sistemas Hidráulicos -->
     <div class="modal fade" id="modalSistemas" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg-tech" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">×</span></button>
-                    <h4 class="modal-title">Fabricación y reparación de sistemas hidráulicos y neumáticos</h4>
-                </div>
-                <div class="modal-body">
-                    <p class="modal-description">Diseñamos, fabricamos y reparamos componentes y sistemas completos de
-                        hidráulica y neumática, adaptados a las necesidades específicas de su maquinaria para un
-                        rendimiento superior.</p>
-
-                    <div class="swiper-container modal-swiper">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide"><img src="multimedia/servicio18.jpg"
-                                    alt="Conexiones y mangueras de un sistema hidráulico de alta presión en maquinaria.">
-                            </div>
-                            <div class="swiper-slide"><img src="multimedia/servicio19.jpg"
-                                    alt="Tres pistones o cilindros hidráulicos de doble efecto para maquinaria pesada.">
-                            </div>
-                            <div class="swiper-slide"><img src="multimedia/servicio20.jpg"
-                                    alt="Cableado y tuberías de un sistema neumático y eléctrico en la base de una máquina.">
+                <div class="modal-split">
+                    <button class="modal-close-btn" data-dismiss="modal">&times;</button>
+                    <div class="modal-visual">
+                        <div class="swiper-container modal-swiper">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img src="multimedia/servicio18.jpg" alt="Sistema hidráulico">
+                                </div>
+                                <div class="swiper-slide"><img src="multimedia/servicio19.jpg"
+                                        alt="Pistones hidráulicos"></div>
+                                <div class="swiper-slide"><img src="multimedia/servicio20.jpg" alt="Sistema neumático">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <div class="modal-cta">
-                        <p>¿Interesado/a en este servicio? Contáctanos para una cotización</p>
-                        <a href="#contact" class="btn btn-danger btn-cta" data-dismiss="modal">Solicitar información</a>
+                    <div class="modal-info">
+                        <span class="tech-tag">Fluid Power</span>
+                        <h3>Sistemas hidráulicos y neumáticos</h3>
+                        <p class="modal-description">Ingeniería aplicada al diseño y restauración de sistemas de
+                            potencia fluida. Fabricamos componentes a medida para aplicaciones de alto rendimiento.</p>
+                        <ul class="spec-list">
+                            <li><i class="fa fa-check-circle"></i> Fabricación de unidades de potencia</li>
+                            <li><i class="fa fa-check-circle"></i> Reparación de cilindros de gran escala</li>
+                            <li><i class="fa fa-check-circle"></i> Diseño de circuitos lógicos</li>
+                        </ul>
+                        <div class="trust-box">
+                            <i class="fa fa-tint"></i>
+                            <span>Potencia y control absoluto para sus procesos industriales.</span>
+                        </div>
+                        <div class="modal-cta-fixed">
+                            <a href="#contact" class="btn-cta-tech" data-dismiss="modal">Solicitar cotización</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Modal: Tuberías -->
     <div class="modal fade" id="modalTuberias" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg-tech" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">×</span></button>
-                    <h4 class="modal-title">Instalación de tuberías hidráulicas</h4>
-                </div>
-                <div class="modal-body">
-                    <p class="modal-description">Realizamos el suministro, habilitado e instalación de tuberías
-                        hidráulicas de alta precisión para sistemas americanos y europeos, garantizando un flujo
-                        eficiente y seguro.</p>
-
-                    <div class="swiper-container modal-swiper">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide"><img src="multimedia/servicio21.jpg"
-                                    alt="Conjunto de tuberías hidráulicas de acero dobladas a medida para instalación.">
-                            </div>
-                            <div class="swiper-slide"><img src="multimedia/servicio22.jpg"
-                                    alt="Vista superior de tuberías y cadena de arrastre en un sistema automatizado.">
-                            </div>
-                            <div class="swiper-slide"><img src="multimedia/servicio23.jpg"
-                                    alt="Instalación ordenada de tuberías hidráulicas de acero inoxidable sobre el piso de concreto.">
+                <div class="modal-split">
+                    <button class="modal-close-btn" data-dismiss="modal">&times;</button>
+                    <div class="modal-visual">
+                        <div class="swiper-container modal-swiper">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img src="multimedia/servicio21.jpg"
+                                        alt="Tuberías hidráulicas"></div>
+                                <div class="swiper-slide"><img src="multimedia/servicio23.jpg"
+                                        alt="Instalación de tuberías"></div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <div class="modal-cta">
-                        <p>¿Interesado/a en este servicio? Contáctanos para una cotización</p>
-                        <a href="#contact" class="btn btn-danger btn-cta" data-dismiss="modal">Solicitar información</a>
+                    <div class="modal-info">
+                        <span class="tech-tag">Piping Industrial</span>
+                        <h3>Instalación de tuberías de presión</h3>
+                        <p class="modal-description">Suministro e instalación profesional de redes de tubería
+                            hidráulica. Expertos en estándares americanos y europeos para entornos de alta exigencia.
+                        </p>
+                        <ul class="spec-list">
+                            <li><i class="fa fa-check-circle"></i> Doblado de tubería milimétrico</li>
+                            <li><i class="fa fa-check-circle"></i> Soldadura de alta presión</li>
+                            <li><i class="fa fa-check-circle"></i> Pruebas de estanqueidad</li>
+                        </ul>
+                        <div class="trust-box">
+                            <i class="fa fa-random"></i>
+                            <span>Flujo ininterrumpido bajo las normativas más estrictas de seguridad.</span>
+                        </div>
+                        <div class="modal-cta-fixed">
+                            <a href="#contact" class="btn-cta-tech" data-dismiss="modal">Solicitar cotización</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <footer class="text-center lazy-load">
+    <footer class="text-center">
         <p>&copy; 2024 SHT - Servicios Hidráulicos Tijerina SA DE CV. Todos los derechos reservados.<br>Diseñado y
-            desarrollado por hiRed</p>
+            desarrollado por <a href="https://blaj.netlify.app/" target="_blank" class="blaj-link">BLAJ</a></p>
     </footer>
 
     <div id="validationModal" class="validation-modal">
@@ -602,16 +646,7 @@
         </div>
     </div>
 
-    <div id="successModal" class="validation-modal">
-        <div class="validation-modal-content">
-            <div class="success-icon-container">
-                <span class="glyphicon glyphicon-ok"></span>
-            </div>
-            <h4>¡Mensaje enviado!</h4>
-            <p>Gracias por contactarnos. Te responderemos a la brevedad.</p>
-            <button id="closeSuccessModal" class="btn btn-success">Entendido</button>
-        </div>
-    </div>
+
 
     <a href="https://wa.link/osrcg2" class="central-cta-button" target="_blank">
         Cotiza tu proyecto
@@ -620,8 +655,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="js/index.js"></script>
     <script src="https://blaj-chatbot.vercel.app/static/sht/widget.js"></script>
+    <script src="https://blaj-chatbot.vercel.app/static/js/blaj-forms.js"></script>
 </body>
 
 </html>
