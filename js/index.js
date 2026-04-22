@@ -12,7 +12,7 @@ $(document).ready(function () {
         } else {
             navbar.classList.remove('scrolled');
         }
-    });
+    }, { passive: true });
 
     // Toggle menu
     if (hamburger) {
@@ -235,11 +235,12 @@ $(document).ready(function () {
     }
 
     // ===== Manejo del loader de página =====
-    var minTime = 1000; // Reducido de 3000ms a 1000ms para mayor rapidez
+    var minTime = 1000;
     var startTime = window.performance ? window.performance.now() : Date.now();
     var images = $('img');
     var totalImages = images.length;
     var imagesLoaded = 0;
+    var loadingFinished = false;
 
     function formatProgress(percent) {
         $('#loaderProgressBar').css('width', percent + '%');
@@ -267,7 +268,31 @@ $(document).ready(function () {
         });
     }
 
-    $(window).on('load', function () {
+    // ===== Animación de elementos del Hero en la carga inicial y al cambiar de slide =====
+    function animateHeroContent(activeItem) {
+        if (typeof gsap !== "undefined") {
+            const h2 = activeItem.find('h2');
+            const p = activeItem.find('p');
+            const btn = activeItem.find('.btn-hero');
+            const icon = activeItem.find('.hero-icon-container');
+
+            gsap.fromTo(h2, { y: -30, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: "power2.out" });
+            gsap.fromTo(p, { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 1, delay: 0.2, ease: "power2.out" });
+            gsap.fromTo(btn, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 1, delay: 0.4, ease: "power2.out" });
+            gsap.fromTo(icon, { scale: 0.5, opacity: 0 }, { scale: 1, opacity: 1, duration: 1, ease: "back.out(1.7)" });
+        }
+    }
+
+    // Listener para el cambio de slide del Carousel de Bootstrap
+    $('#hero').on('slid.bs.carousel', function () {
+        const activeItem = $(this).find('.item.active');
+        animateHeroContent(activeItem);
+    });
+
+    function finishLoading() {
+        if (loadingFinished) return;
+        loadingFinished = true;
+
         imagesLoaded = totalImages;
         checkImageProgress();
 
@@ -279,15 +304,27 @@ $(document).ready(function () {
             $('body').removeClass('loading').addClass('loaded');
 
             $('#loader-wrapper').fadeOut(500, function () {
-                if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
-                    gsap.from(".hero-caption h2", { y: -30, opacity: 0, duration: 1, ease: "power2.out" });
-                    gsap.from(".hero-caption p", { y: -20, opacity: 0, duration: 1, delay: 0.2, ease: "power2.out" });
-                    gsap.from(".hero-caption .btn-hero", { y: 20, opacity: 0, duration: 1, delay: 0.4, ease: "power2.out" });
+                const activeHeroItem = $('#hero .item.active');
+                animateHeroContent(activeHeroItem);
+                
+                if (typeof gsap !== "undefined") {
                     gsap.from(".anniversary-badge", { scale: 0, opacity: 0, duration: 1, delay: 0.6, ease: "back.out(1.7)" });
                 }
             });
         }, delay);
-    });
+    }
+
+    // Ejecutar carga si el documento ya está listo o esperar al evento load
+    if (document.readyState === 'complete') {
+        finishLoading();
+    } else {
+        $(window).on('load', function () {
+            finishLoading();
+        });
+    }
+
+    // Fallback de seguridad si el evento load tarda demasiado (e.g. 8 segundos)
+    setTimeout(finishLoading, 8000);
 
     // ===== Validación y envío del formulario =====
     var contactForm = $('#contactForm');
@@ -414,9 +451,10 @@ $(document).ready(function () {
         observer.observe(footer);
     }
 
-    $(window).on('scroll', function () {
+    // Listener de scroll pasivo (Vanilla JS para mejor soporte)
+    window.addEventListener('scroll', function () {
         checkFloatingButtonsVisibility();
-    });
+    }, { passive: true });
 
     checkFloatingButtonsVisibility();
 
