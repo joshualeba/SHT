@@ -98,8 +98,8 @@ p {
     background: var(--card-bg);
     border-radius: 20px;
     box-shadow: 0 10px 40px var(--card-shadow);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border: 1px solid var(--card-border);
     padding: 40px 30px;
     margin-bottom: 30px;
@@ -108,6 +108,7 @@ p {
     flex-direction: column;
     justify-content: space-between;
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, background 0.4s ease, border 0.4s ease;
+    will-change: transform, opacity;
 }
 
 .glass-panel:hover {
@@ -581,8 +582,9 @@ p {
     position: relative;
     border-radius: 24px !important;
     overflow: hidden;
-    background: var(--color-blanco) !important; /* Más sólido en modo luz */
+    background: var(--color-blanco) !important;
     border: 1px solid var(--card-border) !important;
+    will-change: transform, opacity;
 }
 
 .why-card-header {
@@ -992,8 +994,12 @@ textarea.form-control {
    Modales Técnicos de Ingeniería (Diseño Split-View)
    ========================================================================== */
 body.modal-open-blur > *:not(.modal) {
-    filter: blur(10px);
-    transition: filter 0.4s ease-in-out;
+    /* Eliminado blur por ser extremadamente costoso para el rendimiento */
+    transition: opacity 0.4s ease-in-out;
+}
+
+body.modal-open-blur > *:not(.modal) {
+    opacity: 0.4;
 }
 
 .modal {

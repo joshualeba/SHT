@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    // ===== NAVEGACIÓN PERSONALIZADA (SIN BOOTSTRAP) =====
+    // ===== Navegación personalizada (sin bootstrap) =====
     const navbar = document.querySelector('.custom-navbar');
     const hamburger = document.querySelector('.nav-hamburger');
     const navMenu = document.querySelector('.nav-menu-overlay');
@@ -70,7 +70,7 @@ $(document).ready(function () {
         $('body').addClass('modal-scroll-lock modal-open-blur');
         $('body').css('top', -scrollPosition + 'px');
 
-        // Resetear estados de animación GSAP
+        // Resetear estados de animación gsap
         const $modal = $(this);
         if (typeof gsap !== "undefined") {
             gsap.set($modal.find('.tech-tag, .modal-info h3, .modal-description, .spec-list, .trust-box, .modal-cta-fixed'), {
@@ -125,7 +125,7 @@ $(document).ready(function () {
         $(window).scrollTop(scrollPosition);
     });
 
-    // ===== ANIMACIONES GSAP =====
+    // ===== Animaciones gsap =====
     if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
         gsap.registerPlugin(ScrollTrigger);
 
@@ -147,12 +147,12 @@ $(document).ready(function () {
             );
         });
 
-        // Animación de entrada para Why Cards (Staggered)
+        // Animación de entrada para why cards (staggered)
         if ($('.why-card').length) {
             gsap.from(".why-card", {
                 scrollTrigger: {
                     trigger: ".why-us-section",
-                    start: "top 85%", // Mismo trigger que lazy-load para sincronía
+                    start: "top 85%",
                     toggleActions: "play none none reverse"
                 },
                 y: 50,
@@ -163,13 +163,13 @@ $(document).ready(function () {
             });
         }
 
-        // Efecto Tilt para Service Cards y Why Cards
+        // Efecto tilt para service cards y why cards
         gsap.utils.toArray('.service-card, .why-card').forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const { left, top, width, height } = card.getBoundingClientRect();
                 const x = (e.clientX - left) / width - 0.5;
                 const y = (e.clientY - top) / height - 0.5;
-                
+
                 gsap.to(card, {
                     rotationY: x * 10,
                     rotationX: -y * 10,
@@ -178,7 +178,7 @@ $(document).ready(function () {
                     duration: 0.5
                 });
             });
-            
+
             card.addEventListener('mouseleave', () => {
                 gsap.to(card, {
                     rotationY: 0,
@@ -189,11 +189,11 @@ $(document).ready(function () {
             });
         });
 
-        // Animación de títulos con SplitText (simulado por stagger)
+        // Animación de títulos con stagger
         gsap.utils.toArray('.gsap-title').forEach(title => {
             const text = title.textContent;
             title.innerHTML = text.split('').map(char => `<span style="display:inline-block">${char === ' ' ? '&nbsp;' : char}</span>`).join('');
-            
+
             gsap.from(title.querySelectorAll('span'), {
                 opacity: 0,
                 y: 20,
@@ -210,9 +210,8 @@ $(document).ready(function () {
 
         // Animación para elementos de la línea de tiempo
         gsap.utils.toArray('.timeline-item').forEach(function(item, index) {
-            // Evaluamos resolución
             var isDesktop = $(window).width() > 767;
-            var isLeft = index % 2 === 0; // nth-child(odd) = index 0,2,4 -> izquierda, nth-child(even) = index 1,3,5 -> derecha
+            var isLeft = index % 2 === 0;
 
             var startX = isDesktop ? (isLeft ? -50 : 50) : 0;
             var startY = isDesktop ? 0 : 50;
@@ -235,8 +234,8 @@ $(document).ready(function () {
         });
     }
 
-    // ===== MANEJO DEL LOADER DE PÁGINA =====
-    var minTime = 3000;
+    // ===== Manejo del loader de página =====
+    var minTime = 1000; // Reducido de 3000ms a 1000ms para mayor rapidez
     var startTime = window.performance ? window.performance.now() : Date.now();
     var images = $('img');
     var totalImages = images.length;
@@ -269,7 +268,6 @@ $(document).ready(function () {
     }
 
     $(window).on('load', function () {
-        // Asegurar que llegue al 100% real
         imagesLoaded = totalImages;
         checkImageProgress();
 
@@ -279,9 +277,8 @@ $(document).ready(function () {
         setTimeout(function () {
             $('html').removeClass('loading');
             $('body').removeClass('loading').addClass('loaded');
-            
+
             $('#loader-wrapper').fadeOut(500, function () {
-                // Animar el Hero después de cargar
                 if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
                     gsap.from(".hero-caption h2", { y: -30, opacity: 0, duration: 1, ease: "power2.out" });
                     gsap.from(".hero-caption p", { y: -20, opacity: 0, duration: 1, delay: 0.2, ease: "power2.out" });
@@ -292,10 +289,9 @@ $(document).ready(function () {
         }, delay);
     });
 
-    // ===== VALIDACIÓN Y ENVÍO DEL FORMULARIO CON FORMSPREE (AJAX) =====
+    // ===== Validación y envío del formulario =====
     var contactForm = $('#contactForm');
 
-    // --- Validación en tiempo real ---
     function validateField(input, feedback, regex, emptyMsg, invalidMsg, minLen = 0, maxLen = Infinity) {
         const value = $(input).val().trim();
         const $input = $(input);
@@ -345,7 +341,7 @@ $(document).ready(function () {
         const isMessageValid = validateField('#messageInput', '#messageFeedback', null, 'El mensaje es obligatorio.', '', 10, 300);
 
         if (!isNameValid || !isEmailValid || !isMessageValid) {
-            event.preventDefault(); // Detener envío solo si hay errores
+            event.preventDefault();
             var errorList = $('#errorList');
             errorList.empty();
             if(!isNameValid) errorList.append('<li>Verifica el campo nombre</li>');
@@ -354,13 +350,8 @@ $(document).ready(function () {
             $('#validationModal').addClass('is-visible');
             return;
         }
-
-        // Si llega aquí, la validación es correcta.
-        // NO llamamos a event.preventDefault() ni a fetch.
-        // Permitimos que el script de Blaj Forms maneje el envío y su propio modal.
     });
 
-    // --- Lógica para cerrar el modal de validación ---
     function closeValidationModal() {
         $('#validationModal').removeClass('is-visible');
     }
@@ -375,13 +366,11 @@ $(document).ready(function () {
         e.stopPropagation();
     });
 
-    // ===== OCULTAR BOTONES FLOTANTES AL LLEGAR AL FOOTER =====
-    // ===== VISIBILIDAD DE BOTONES FLOTANTES =====
+    // ===== Visibilidad de botones flotantes =====
     var footer = document.querySelector('footer');
     var hero = document.querySelector('#hero');
     var centralCtaButton = $('.central-cta-button');
-    // Nota: El contenedor del chatbot se genera dinámicamente, intentamos seleccionarlo
-    // Se usa una función para obtenerlo porque puede no estar listo al inicio
+    
     function getChatContainer() {
         return $('.blaj-widget-container');
     }
@@ -393,17 +382,12 @@ $(document).ready(function () {
         var heroHeight = $(hero).outerHeight() || 0;
         var chatContainer = getChatContainer();
 
-        // 1. Lógica del Botón "Cotiza tu proyecto" (CTA)
-        // Solo visible si pasamos el hero Y el footer no está visible
         if (scrollPosition > heroHeight && !isFooterVisible) {
             centralCtaButton.addClass('is-visible');
         } else {
             centralCtaButton.removeClass('is-visible');
         }
 
-        // 2. Lógica del Chatbot
-        // Visible siempre, excepto si el footer está visible
-        // Agregamos/quitamos la clase que fuerza el ocultamiento
         if (isFooterVisible) {
             centralCtaButton.addClass('floating-buttons-hidden');
             if (chatContainer.length) chatContainer.addClass('floating-buttons-hidden');
@@ -413,10 +397,9 @@ $(document).ready(function () {
         }
     }
 
-    // Observer para el footer
     var observerOptions = {
         root: null,
-        rootMargin: '0px 0px -50px 0px', // Ajustado para que desaparezca un poco antes de tocar fondo
+        rootMargin: '0px 0px -50px 0px',
         threshold: 0
     };
 
@@ -431,14 +414,13 @@ $(document).ready(function () {
         observer.observe(footer);
     }
 
-    // Chequear visibilidad al hacer scroll
     $(window).on('scroll', function () {
         checkFloatingButtonsVisibility();
     });
 
-    // Chequeo inicial
     checkFloatingButtonsVisibility();
-    // ===== MANEJO DEL MODO OSCURO / CLARO =====
+
+    // ===== Manejo del modo oscuro / claro =====
     const themeToggles = document.querySelectorAll('.theme-toggle-input');
     const currentTheme = localStorage.getItem('theme');
 
@@ -452,11 +434,10 @@ $(document).ready(function () {
     function switchTheme(e) {
         const isDark = e.target.checked;
         const newTheme = isDark ? 'dark' : 'light';
-        
+
         document.documentElement.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
-        
-        // Sincronizar todos los toggles de la página
+
         themeToggles.forEach(toggle => {
             toggle.checked = isDark;
         });
